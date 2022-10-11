@@ -79,7 +79,6 @@ main {
 	justify-content: center;
 	align-items: center;
 	background-color: rgba(0, 0, 0, 0.08);
-	border: 1px solid rgba(0, 0, 0, 0.08);
 	width: 25px;
 	height: 25px;
 	font-weight: bold;
