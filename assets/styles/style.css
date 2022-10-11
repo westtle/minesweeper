@@ -1,0 +1,154 @@
+:root {
+	--font-size-main: 14.5px;
+	--font-size-second: 11px;
+
+	--color-main: rgba(0, 0, 0, 0.8);
+	--border-main: rgba(0, 0, 0, 0.6);
+
+	/* Button */
+	--button-hover-backround: rgba(0, 0, 0, 0.8);
+	--button-hover-color: rgba(255, 255, 255, 0.9);
+	--font-size-button: 12.3px;
+}
+
+* {
+	color: var(--color-main);
+	box-sizing: border-box;
+	font-size: var(--font-size-main);
+}
+
+main {
+	padding: 12px;
+	text-align: center;
+}
+
+#minesweeper {
+	width: 227px;
+	margin: 4.5vh auto;
+}
+
+.__game-info {
+	border: 1px solid var(--border-main);
+	border-bottom: 0;
+	border-radius: 3px 3px 0 0;
+	padding: 7px 12px;
+
+	position: relative;
+}
+
+.__game-info ._smiley-face {
+	padding: 8px;
+	cursor: pointer;
+}
+
+.__game-info ._smiley-face:hover {
+	font-weight: bold;
+}
+
+.__game-info ._mines-count {
+	font-weight: bold;
+
+	position: absolute;
+	right: 8px;
+}
+
+.__game-info ._flag {
+	width: 21px;
+	padding: 3px;
+	opacity: 0.6;
+	cursor: pointer;
+
+	position: absolute;
+	top: 5px;
+	left: 8px;
+}
+
+.__game-info ._flag:hover {
+	opacity: 0.9;
+}
+
+.__board {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	grid-template-rows: repeat(9, 1fr);
+	border: 1px solid var(--border-main);
+}
+
+.__board ._tile {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.08);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	width: 25px;
+	height: 25px;
+	font-weight: bold;
+	cursor: default;
+}
+
+.__board ._tile:hover {
+	background-color: rgb(186, 186, 186);
+}
+
+.__board ._tile img {
+	width: var(--font-size-main);
+	opacity: 0.8;
+}
+
+.__timer {
+	border: 1px solid var(--border-main);
+	border-top: 0;
+	padding: 7px 12px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.__notice {
+	padding: 0 12px;
+	margin-top: 9.715px;
+	font-size: 11px;
+}
+
+/* Extra */
+
+.flag-clicked {
+	opacity: 0.9 !important;
+}
+
+.clicked {
+	background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Tile Color */
+
+.t1 {
+    color: blue;
+}
+
+.t2 {
+    color: green;
+}
+
+.t3 {
+    color: red;
+}
+
+.t4 {
+    color: purple;
+}
+
+.t5 {
+    color: black;
+}
+
+.t6 {
+    color: gray;
+}
+
+.t7 {
+    color: maroon;
+}
+
+.t8 {
+    color: turquoise;
+}
