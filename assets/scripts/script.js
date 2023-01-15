@@ -5,17 +5,21 @@ let gameRow = 9;
 let gameColumn = 9;
 
 let mines = 10;
+let minesLeft = mines;
 let minesLocation = [];
 
 let flagMode = false;
 let gameStarted = false;
+let difficulty = "Beginner";
 
 // HTML.
 const boardHTML = document.querySelector(".__board");
-const flagButton = document.querySelector("._flag");
-const minesCounter = document.querySelector("._mines-count");
 const timerHTML = document.querySelector(".__timer");
 const smileyFace = document.querySelector("._smiley-face");
+const minesCounter = document.querySelector("._mines-count");
+
+const flagButton = document.querySelector("._flag");
+const difficultyButtons = document.querySelectorAll("._game-difficulty span");
 
 function loadBoard() {
 	for (let r = 0; r < gameRow; r++) {
@@ -34,6 +38,7 @@ function loadBoard() {
 		};
 	};
 
+	minesCounter.innerText = minesLeft;
 	loadMines();
 };
 
@@ -52,6 +57,39 @@ function loadMines() {
 
 		};
 	};
+};
+
+function difficultySet() {
+	difficulty = this.innerText;
+	difficultyButtons.forEach(button => button.classList.remove("chosen_"));
+	boardHTML.innerHTML = "";
+
+	if (difficulty == "Beginner") {
+		gameRow = 9;
+		gameColumn = 9;
+		mines = 10;
+		
+		document.querySelector("main").style.maxWidth = "227px";
+		this.classList.add("chosen_");
+	} else if (difficulty == "Intermediate") {
+		gameRow = 16;
+		gameColumn = 16;
+		mines = 40;
+
+		document.querySelector("main").style.maxWidth = "402px";
+		this.classList.add("chosen_");
+	} else if (difficulty == "Expert") {
+		gameRow = 16;
+		gameColumn = 30;
+		mines = 99;
+
+		document.querySelector("main").style.maxWidth = "752px";
+		this.classList.add("chosen_");
+	};
+
+	boardHTML.style.gridTemplateColumns = `repeat(${gameColumn}, 1fr)`;
+	boardHTML.style.gridTemplateRows = `repeat(${gameRow}, 1fr)`;
+	resetGame();
 };
 
 function clickTile() {
@@ -142,8 +180,7 @@ function checkMine(rr, cc) {
 		checkMine(r+1, c+1);
 	};
 
-	winGame();
-	
+	winGame();	
 };
 
 function checkSurrounding(r, c) {
@@ -182,7 +219,7 @@ function endGame(tile) {
 };
 
 function winGame() {
-	if (tilesClicked === 71) {
+	if (tilesClicked == gameRow * gameColumn - mines) {
 		smileyFace.innerText = ":D";
 		flagButton.removeEventListener("click", setFlagMode);
 		boardHTML.childNodes.forEach(t => t.removeEventListener("click", clickTile));
@@ -196,7 +233,8 @@ function winGame() {
 
 function resetGame() {
 	tilesClicked = 0;
-	mines = 10;
+	// mines = difficulty == "Beginner" ? 10 : difficulty == "Intermediate" ? 40 : 99;
+	minesLeft = mines
 	minesCounter.innerText = mines;
 	minesLocation = [];
 	boardHTML.innerHTML = "";
@@ -235,13 +273,13 @@ function placeFlag(e, tile = this) {
 		tile.innerHTML = "";
 		tile.append(flagIcon);
 
-		mines -= 1;
+		minesLeft -= 1;
 	} else if (tile.contains(tile.querySelector("img"))) {
 		tile.innerHTML = "";
-		mines += 1;
+		minesLeft += 1;
 	};
 
-	minesCounter.innerText = mines;
+	minesCounter.innerText = minesLeft;
 	return;
 };
 
@@ -276,6 +314,7 @@ function faceWhenReleaseHold() {
 
 smileyFace.addEventListener("click", resetGame);
 flagButton.addEventListener("click", setFlagMode);
+difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
 
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();

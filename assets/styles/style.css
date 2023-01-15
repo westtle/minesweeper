@@ -42,6 +42,27 @@ main {
 	width: 100%;
 }
 
+/* Game Difficulty */
+
+._game-difficulty {
+	font-size: var(--font-size-second);
+	text-decoration: underline;
+	cursor: pointer;
+
+	position: absolute;
+	top: -0.938rem;
+	left: 0;
+}
+
+._game-difficulty span {
+	margin-right: 3px;
+	opacity: 0.6;
+}
+
+.chosen_ {
+	opacity: 0.95 !important;
+}
+
 /* Game Info */
 
 .__game-info {
@@ -52,6 +73,7 @@ main {
 	border-bottom: 0;
 	padding: var(--unit-one) var(--unit-two);
 
+	position: relative;
 }
 
 ._smiley-face {
@@ -131,4 +153,12 @@ main {
 
 .clicked {
 	background-color: rgb(227, 227, 227) !important;
+}
+
+/* Media Query */
+
+@media (hover: hover) {
+	._game-difficulty span:hover {
+		opacity: 0.95;
+	}
 }
