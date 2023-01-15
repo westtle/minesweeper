@@ -38,15 +38,15 @@ function loadBoard() {
 };
 
 function loadMines() {
-	for (let i = 0; i <= 9; i++) {
+	for (let i = 0; i < mines; i++) {
 		let randomRow = Math.floor(Math.random() * row);
 		let randomColumn = Math.floor(Math.random() * column);
 
 		if (!minesLocation.includes(`${randomRow}-${randomColumn}`)) {
 			minesLocation.push(`${randomRow}-${randomColumn}`);
-			minesLocation.splice(10, 11)
+			minesLocation.splice(mines, mines + 1)
 
-			if (minesLocation.length < 10) {
+			if (minesLocation.length < mines) {
 				loadMines();
 			};
 
