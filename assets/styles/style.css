@@ -72,29 +72,31 @@ main {
 	opacity: 0.8;
 }
 
+/* Game Board */
+
 .__board {
 	display: grid;
 	grid-template-columns: repeat(9, 1fr);
 	grid-template-rows: repeat(9, 1fr);
-	border: 1px solid var(--border-main);
+	border: var(--border-shorthand);
 }
 
-.__board ._tile {
+._tile {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.08);
+	background-color: rgb(238, 238, 238);
 	width: 25px;
 	height: 25px;
 	font-weight: bold;
 	cursor: default;
 }
 
-.__board ._tile:hover {
-	background-color: rgb(186, 186, 186);
+._tile:hover {
+	background-color: rgb(215, 215, 215);
 }
 
-.__board ._tile img {
+._tile img {
 	width: var(--font-size-main);
 	opacity: 0.8;
 }
@@ -120,7 +122,7 @@ main {
 }
 
 .clicked {
-	background-color: rgba(0, 0, 0, 0.15) !important;
+	background-color: rgb(227, 227, 227) !important;
 }
 
 /* Tile Color */
