@@ -27,6 +27,7 @@ function loadBoard() {
 			let tile = document.createElement("div");
 			tile.id = `${r}-${c}`;
 			tile.classList.add("_tile");
+			tile.dataset.flagged = false;
 			tile.addEventListener("click", clickTile);
 			tile.addEventListener("contextmenu", placeFlag);
 			tile.addEventListener("mousedown", faceWhenHold);
@@ -80,7 +81,7 @@ function difficultySet() {
 		gameRow = 16;
 		gameColumn = 30;
 		mines = 99;
-		
+
 		this.classList.add("chosen_");
 	};
 
@@ -105,7 +106,7 @@ function clickTile() {
 	minesLocation.forEach(m => {
 		if (this.id === m) {
 			// If there is no flag, then you can click.
-			if (!this.contains(this.querySelector("img"))) {
+			if (this.dataset.flagged == "false") {
 				gameStarted = false;
 
 				revealMines();
@@ -130,7 +131,7 @@ function checkMine(rr, cc) {
 
 	let currentTile = document.getElementById(`${r}-${c}`);
 
-	if (currentTile.classList.contains("clicked") || currentTile.contains(currentTile.querySelector("img"))) {
+	if (currentTile.classList.contains("clicked") || currentTile.dataset.flagged !== "false" || currentTile.contains(currentTile.querySelector("img"))) {
 		return;
 	} else {
 		currentTile.classList.add("clicked");
@@ -267,14 +268,20 @@ function placeFlag(e, tile = this) {
 	let flagIcon = document.createElement("img");
 	flagIcon.src = "assets/Images/flag.svg";
 
-	if (!tile.contains(tile.querySelector("img")) && !tile.classList.contains("clicked")) {
+	if (tile.dataset.flagged == "false" && !tile.classList.contains("clicked")) {
 		tile.innerHTML = "";
 		tile.append(flagIcon);
-
+		tile.dataset.flagged = "flagged";
+		
 		minesLeft -= 1;
-	} else if (tile.contains(tile.querySelector("img"))) {
-		tile.innerHTML = "";
+	} else if (tile.dataset.flagged == "flagged") {
+		tile.innerText = "?";
+		tile.dataset.flagged = "question-mark";
+		
 		minesLeft += 1;
+	} else if (tile.dataset.flagged == "question-mark") {
+		tile.innerText = "";
+		tile.dataset.flagged = false;
 	};
 
 	minesCounter.innerText = minesLeft;
