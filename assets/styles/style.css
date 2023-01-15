@@ -151,8 +151,12 @@ main {
 ._smiley-face {
 	background: url("/assets/Images/faces.png");
 	background-position: 0 0;
-	height: 24px;
-	width: 24px;
+	border: 1px solid #878787;
+	border-right: none;
+	border-bottom: none;
+	border-radius: 2px 2px 0 2px;
+	height: 25px;
+	width: 25px;
 }
 
 /* Game Board */
@@ -213,7 +217,7 @@ main {
 		color: white;
 		background-color: #0368ee;
 	}
-	
+
 	._game-difficulty span:hover {
 		opacity: 0.95;
 	}
