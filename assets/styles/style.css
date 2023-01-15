@@ -38,6 +38,10 @@ main {
 	text-align: center;
 }
 
+#minesweeper {
+	width: 100%;
+}
+
 /* Game Info */
 
 .__game-info {
@@ -86,7 +90,7 @@ main {
 	justify-content: center;
 	align-items: center;
 	background-color: rgb(238, 238, 238);
-	width: 25px;
+	width: 100%;
 	height: 25px;
 	font-weight: bold;
 	cursor: default;
@@ -127,38 +131,4 @@ main {
 
 .clicked {
 	background-color: rgb(227, 227, 227) !important;
-}
-
-/* Tile Color */
-
-.t1 {
-    color: blue;
-}
-
-.t2 {
-    color: green;
-}
-
-.t3 {
-    color: red;
-}
-
-.t4 {
-    color: purple;
-}
-
-.t5 {
-    color: black;
-}
-
-.t6 {
-    color: gray;
-}
-
-.t7 {
-    color: maroon;
-}
-
-.t8 {
-    color: turquoise;
 }
