@@ -1,8 +1,8 @@
 let board = [];
 let tilesClicked = 0;
 
-let row = 9;
-let column = 9;
+let gameRow = 9;
+let gameColumn = 9;
 
 let mines = 10;
 let minesLocation = [];
@@ -18,8 +18,8 @@ const timerHTML = document.querySelector(".__timer");
 const smileyFace = document.querySelector("._smiley-face");
 
 function loadBoard() {
-	for (let r = 0; r < row; r++) {
-		for (let c = 0; c < column; c++) {
+	for (let r = 0; r < gameRow; r++) {
+		for (let c = 0; c < gameColumn; c++) {
 			let tile = document.createElement("div");
 			tile.id = `${r}-${c}`;
 			tile.classList.add("_tile");
@@ -39,8 +39,8 @@ function loadBoard() {
 
 function loadMines() {
 	for (let i = 0; i < mines; i++) {
-		let randomRow = Math.floor(Math.random() * row);
-		let randomColumn = Math.floor(Math.random() * column);
+		let randomRow = Math.floor(Math.random() * gameRow);
+		let randomColumn = Math.floor(Math.random() * gameColumn);
 
 		if (!minesLocation.includes(`${randomRow}-${randomColumn}`)) {
 			minesLocation.push(`${randomRow}-${randomColumn}`);
@@ -88,7 +88,7 @@ function checkMine(rr, cc) {
     let r = Number(rr);
     let c = Number(cc);
 
-	if (r < 0 || r >= row || c < 0 || c >= column) {
+	if (r < 0 || r >= gameRow || c < 0 || c >= gameColumn) {
         return;
     }
 
@@ -147,7 +147,7 @@ function checkMine(rr, cc) {
 };
 
 function checkSurrounding(r, c) {
-	if (r < 0 || r >= row || c < 0 || c >= column) {
+	if (r < 0 || r >= gameRow || c < 0 || c >= gameColumn) {
         return 0;
     };
 
