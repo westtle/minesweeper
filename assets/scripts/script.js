@@ -1,8 +1,8 @@
 let board = [];
 let tilesClicked = 0;
 
-const row = 9;
-const column = 9;
+let row = 9;
+let column = 9;
 
 let mines = 10;
 let minesLocation = [];
@@ -11,13 +11,11 @@ let flagMode = false;
 let gameStarted = false;
 
 // HTML.
-const boardDiv = document.querySelector(".__board");
+const boardHTML = document.querySelector(".__board");
 const flagButton = document.querySelector("._flag");
 const minesCounter = document.querySelector("._mines-count");
-const timerDiv = document.querySelector(".__timer");
+const timerHTML = document.querySelector(".__timer");
 const smileyFace = document.querySelector("._smiley-face");
-
-smileyFace.addEventListener("click", resetGame);
 
 function loadBoard() {
 	for (let r = 0; r < row; r++) {
@@ -29,14 +27,13 @@ function loadBoard() {
 			tile.addEventListener("contextmenu", placeFlag);
 			tile.addEventListener("mousedown", faceWhenHold);
 			tile.addEventListener("mouseup", faceWhenReleaseHold);
-			boardDiv.append(tile);
+			boardHTML.append(tile);
 
 			// Fill board array.
 			board.push(`${r}-${c}`);
 		};
 	};
 
-	flagButton.addEventListener("click", setFlagMode);
 	loadMines();
 };
 
@@ -55,45 +52,6 @@ function loadMines() {
 
 		};
 	};
-};
-
-function setFlagMode() {
-	if (flagMode) {
-		flagMode = false;
-		flagButton.classList.remove("flag-clicked");
-
-		boardDiv.childNodes.forEach(t => t.addEventListener("mousedown", faceWhenHold));
-		boardDiv.childNodes.forEach(t => t.addEventListener("mouseup", faceWhenReleaseHold));
-	} else {
-		flagMode = true;
-		flagButton.classList.add("flag-clicked");
-
-		boardDiv.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
-		boardDiv.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
-	};
-};
-
-function placeFlag(e, tile = this) {
-	if (e !== null) {
-		// For the right click.
-		e.preventDefault();
-	};
-
-	let flagIcon = document.createElement("img");
-	flagIcon.src = "assets/Images/flag.svg";
-
-	if (!tile.contains(tile.querySelector("img")) && !tile.classList.contains("clicked")) {
-		tile.innerHTML = "";
-		tile.append(flagIcon);
-
-		mines -= 1;
-	} else if (tile.contains(tile.querySelector("img"))) {
-		tile.innerHTML = "";
-		mines += 1;
-	};
-
-	minesCounter.innerText = mines;
-	return;
 };
 
 function clickTile() {
@@ -216,10 +174,10 @@ function endGame(tile) {
 	tile.classList.remove("clicked");
 	tile.style.background = "rgba(255, 0, 0, 0.4)";
 	flagButton.removeEventListener("click", setFlagMode);
-	boardDiv.childNodes.forEach(t => t.removeEventListener("click", clickTile));
-	boardDiv.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
-	boardDiv.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
-	boardDiv.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
+	boardHTML.childNodes.forEach(t => t.removeEventListener("click", clickTile));
+	boardHTML.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
+	boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
+	boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
 	smileyFace.innerText = ":(";
 };
 
@@ -227,10 +185,10 @@ function winGame() {
 	if (tilesClicked === 71) {
 		smileyFace.innerText = ":D";
 		flagButton.removeEventListener("click", setFlagMode);
-		boardDiv.childNodes.forEach(t => t.removeEventListener("click", clickTile));
-		boardDiv.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
-		boardDiv.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
-		boardDiv.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
+		boardHTML.childNodes.forEach(t => t.removeEventListener("click", clickTile));
+		boardHTML.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
+		boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
+		boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
 		gameStarted = false;
 		revealMines();
 	};
@@ -241,11 +199,50 @@ function resetGame() {
 	mines = 10;
 	minesCounter.innerText = mines;
 	minesLocation = [];
-	boardDiv.innerHTML = "";
+	boardHTML.innerHTML = "";
 	smileyFace.innerText = ":)";
 	gameStarted = false;
-	setTimeout(() => timerDiv.innerText = "000", 1000);
+	setTimeout(() => timerHTML.innerText = "000", 1000);
 	loadBoard();
+};
+
+function setFlagMode() {
+	if (flagMode) {
+		flagMode = false;
+		flagButton.classList.remove("flag-clicked");
+
+		boardHTML.childNodes.forEach(t => t.addEventListener("mousedown", faceWhenHold));
+		boardHTML.childNodes.forEach(t => t.addEventListener("mouseup", faceWhenReleaseHold));
+	} else {
+		flagMode = true;
+		flagButton.classList.add("flag-clicked");
+
+		boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
+		boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
+	};
+};
+
+function placeFlag(e, tile = this) {
+	if (e !== null) {
+		// For the right click.
+		e.preventDefault();
+	};
+
+	let flagIcon = document.createElement("img");
+	flagIcon.src = "assets/Images/flag.svg";
+
+	if (!tile.contains(tile.querySelector("img")) && !tile.classList.contains("clicked")) {
+		tile.innerHTML = "";
+		tile.append(flagIcon);
+
+		mines -= 1;
+	} else if (tile.contains(tile.querySelector("img"))) {
+		tile.innerHTML = "";
+		mines += 1;
+	};
+
+	minesCounter.innerText = mines;
+	return;
 };
 
 function startTimer() {
@@ -255,11 +252,11 @@ function startTimer() {
 		currentTimer += 1;
 
 		if (currentTimer < 10) {
-			timerDiv.innerText = `00${currentTimer}`;
+			timerHTML.innerText = `00${currentTimer}`;
 		} else if (currentTimer < 100) {
-			timerDiv.innerText = `0${currentTimer}`;
+			timerHTML.innerText = `0${currentTimer}`;
 		} else if (currentTimer < 1000) {
-			timerDiv.innerText = currentTimer;
+			timerHTML.innerText = currentTimer;
 		};
 
 		if (!gameStarted || currentTimer ==- 999) {
@@ -276,6 +273,9 @@ function faceWhenHold() {
 function faceWhenReleaseHold() {
 	smileyFace.innerText = ":)";
 };
+
+smileyFace.addEventListener("click", resetGame);
+flagButton.addEventListener("click", setFlagMode);
 
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();
