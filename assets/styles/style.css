@@ -38,43 +38,38 @@ main {
 	text-align: center;
 }
 
+/* Game Info */
+
 .__game-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	border: var(--border-shorthand);
 	border-bottom: 0;
 	padding: var(--unit-one) var(--unit-two);
 
-	position: relative;
 }
 
-.__game-info ._smiley-face {
-	padding: var(--unit-one);
+._smiley-face {
 	cursor: pointer;
 }
 
-.__game-info ._smiley-face:hover {
+._smiley-face:hover {
 	font-weight: bold;
 }
 
-.__game-info ._mines-count {
+._mines-count {
 	font-weight: bold;
-
-	position: absolute;
-	right: 8px;
 }
 
-.__game-info ._flag {
-	width: 21px;
-	padding: 3px;
+._flag {
+	width: var(--font-size-main);
 	opacity: 0.6;
 	cursor: pointer;
-
-	position: absolute;
-	top: 5px;
-	left: 8px;
 }
 
-.__game-info ._flag:hover {
-	opacity: 0.9;
+._flag:hover {
+	opacity: 0.8;
 }
 
 .__board {
