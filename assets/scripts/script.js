@@ -106,7 +106,7 @@ function clickTile() {
 	minesLocation.forEach(m => {
 		if (this.id === m) {
 			// If there is no flag, then you can click.
-			if (this.dataset.flagged == "false") {
+			if (this.dataset.flagged !== "flagged") {
 				gameStarted = false;
 
 				revealMines();
@@ -131,7 +131,7 @@ function checkMine(rr, cc) {
 
 	let currentTile = document.getElementById(`${r}-${c}`);
 
-	if (currentTile.classList.contains("clicked") || currentTile.dataset.flagged !== "false" || currentTile.contains(currentTile.querySelector("img"))) {
+	if (currentTile.classList.contains("clicked") || currentTile.contains(currentTile.querySelector("img"))) {
 		return;
 	} else {
 		currentTile.classList.add("clicked");
@@ -161,7 +161,6 @@ function checkMine(rr, cc) {
 			return;
 		} else {
 			currentTile.innerText = minesFound;
-			// currentTile.classList.add(`t${minesFound}`);
 		};
 	} else { // Recursion.
 			// Top 3 from current tile.
@@ -178,6 +177,8 @@ function checkMine(rr, cc) {
 		checkMine(r+1, c);
 		checkMine(r+1, c+1);
 	};
+
+	if (currentTile.innerText == "?") currentTile.innerText = "";
 
 	winGame();	
 };
