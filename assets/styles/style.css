@@ -101,18 +101,22 @@ main {
 	opacity: 0.8;
 }
 
+/* Timer */
+
 .__timer {
-	border: 1px solid var(--border-main);
+	border: var(--border-shorthand);
 	border-top: 0;
-	padding: 7px 12px;
+	padding: var(--unit-one) var(--unit-two);
 	font-weight: bold;
 	text-align: right;
 }
 
+/* Notice */
+
 .__notice {
-	padding: 0 12px;
-	margin-top: 9.715px;
-	font-size: 11px;
+	margin-top: var(--unit-two);
+	padding: 0 var(--unit-one);
+	font-size: var(--font-size-second);
 }
 
 /* Extra */
