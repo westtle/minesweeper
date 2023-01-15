@@ -39,7 +39,7 @@ function loadBoard() {
 		};
 	};
 
-	minesCounter.innerText = minesLeft;
+	// minesCounter.innerText = minesLeft;
 	loadMines();
 };
 
@@ -85,7 +85,7 @@ function difficultySet() {
 		this.classList.add("chosen_");
 	};
 
-	document.querySelector("main").style.maxWidth = `calc(${gameColumn}px * 25 + 2px)`;
+	document.querySelector("main").style.maxWidth = `calc(${gameColumn}px * 16 + 2px)`;
 	boardHTML.style.gridTemplateColumns = `repeat(${gameColumn}, 1fr)`;
 	boardHTML.style.gridTemplateRows = `repeat(${gameRow}, 1fr)`;
 	resetGame();
@@ -323,7 +323,7 @@ function faceWhenReleaseHold() {
 };
 
 smileyFace.addEventListener("click", resetGame);
-flagButton.addEventListener("click", setFlagMode);
+// flagButton.addEventListener("click", setFlagMode);
 difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
 
 document.addEventListener("DOMContentLoaded", () => {

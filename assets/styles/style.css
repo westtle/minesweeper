@@ -21,6 +21,8 @@
 }
 
 body { /* Left & right spacing is left & right from default body margin + 12px */
+	background: url("/assets/Images/bliss.jpg");
+	background-size: cover;
 	height: 100vh;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -33,12 +35,65 @@ main {
 	justify-content: center;
 	align-items: center;
 	height: calc(100% - 9vh);
-	max-width: 227px;
+	max-width: 163px;
 	margin: 4.5vh auto;
 	text-align: center;
 }
 
+
+#window {
+	background: linear-gradient(0deg, rgba(49,100,218,1) 0%, rgba(49,100,218,1) 0%, rgba(6,100,241,1) 96%, rgba(59,150,255,1) 100%);
+	border-radius: 8px 8px 0 0;
+	padding: 0 3px 3px 3px;
+}
+
+/* Titlebar */
+
+#titlebar {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #134394;
+	padding: 4px;
+	cursor: default;
+	user-select: none;
+}
+
+.__icon img {
+	display: block;
+	width: 18px;
+}
+
+.__title {
+	color: white;
+	margin-left: 4px;
+	font-family: sans-serif;
+	text-shadow: 1px 1px black;
+}
+
+/* Toolbar */
+
+#toolbar {
+	display: flex;
+	background-color: #ece9d8;
+	padding: 3px 6px;
+	font-family: monospace;
+	font-size: var(--font-size-button);
+	cursor: default;
+	user-select: none;
+}
+
+.__game {
+	margin-right: 12px;
+}
+
+/* The Game Itself */
+
 #minesweeper {
+	border: 3px solid white;
+	border-right: 0;
+	border-bottom: 0;
+	background-color: #c4c4c4;
+	padding: 5px;
 	width: 100%;
 }
 
@@ -69,33 +124,35 @@ main {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border: var(--border-shorthand);
-	border-bottom: 0;
-	padding: var(--unit-one) var(--unit-two);
+	background-color: #c4c4c4;
+	margin-bottom: 5px;
+	width: 100%;
+	padding: 4px 5px;
+	border: 2px solid white;
 
 	position: relative;
 }
 
+._mines-count,
+._timer {
+	display: flex;
+	border: 1px solid white;
+}
+
+._mines-count div,
+._timer div {
+	height: 23px;
+	width: 13px;
+	background: url("/assets/Images/digits.png");
+	background-position: 0 0;
+}
+
 ._smiley-face {
+	background: url("/assets/Images/faces.png");
+	background-position: 0 0;
+	height: 24px;
+	width: 24px;
 	cursor: pointer;
-}
-
-._smiley-face:hover {
-	font-weight: bold;
-}
-
-._mines-count {
-	font-weight: bold;
-}
-
-._flag {
-	width: var(--font-size-main);
-	opacity: 0.6;
-	cursor: pointer;
-}
-
-._flag:hover {
-	opacity: 0.8;
 }
 
 /* Game Board */
@@ -104,16 +161,17 @@ main {
 	display: grid;
 	grid-template-columns: repeat(9, 1fr);
 	grid-template-rows: repeat(9, 1fr);
-	border: var(--border-shorthand);
+	border: 3px solid white;
 }
 
 ._tile {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgb(238, 238, 238);
-	width: 100%;
-	height: 25px;
+	background: url("/assets/Images/tiles.png");
+	background-position: 0 0;
+	width: 16px;
+	height: 16px;
 	font-weight: bold;
 	cursor: default;
 }
@@ -127,25 +185,15 @@ main {
 	opacity: 0.8;
 }
 
-/* Timer */
-
-.__timer {
-	border: var(--border-shorthand);
-	border-top: 0;
-	padding: var(--unit-one) var(--unit-two);
-	font-weight: bold;
-	text-align: right;
-}
-
-/* Notice */
-
-.__notice {
-	margin-top: var(--unit-two);
-	padding: 0 var(--unit-one);
-	font-size: var(--font-size-second);
-}
-
 /* Extra */
+
+.__game-info,
+.__board,
+._mines-count,
+._timer {
+	border-left-color: #878787;
+	border-top-color: #878787;
+}
 
 .flag-clicked {
 	opacity: 0.9 !important;
