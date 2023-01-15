@@ -152,7 +152,7 @@ main {
 }
 
 .clicked {
-	background-color: rgb(227, 227, 227) !important;
+	background-color: rgb(227, 227, 227);
 }
 
 /* Media Query */

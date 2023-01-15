@@ -204,6 +204,10 @@ function revealMines() {
 		tileWithMine.innerHTML = "";
 		tileWithMine.append(mineIcon.cloneNode());
 		tileWithMine.classList.add("clicked");
+
+		if (tileWithMine.dataset.flagged == "flagged") {
+			// The one that has a flag on it.
+		};
 	});
 };
 
