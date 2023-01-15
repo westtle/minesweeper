@@ -69,24 +69,22 @@ function difficultySet() {
 		gameColumn = 9;
 		mines = 10;
 		
-		document.querySelector("main").style.maxWidth = "227px";
 		this.classList.add("chosen_");
 	} else if (difficulty == "Intermediate") {
 		gameRow = 16;
 		gameColumn = 16;
 		mines = 40;
 
-		document.querySelector("main").style.maxWidth = "402px";
 		this.classList.add("chosen_");
 	} else if (difficulty == "Expert") {
 		gameRow = 16;
 		gameColumn = 30;
 		mines = 99;
-
-		document.querySelector("main").style.maxWidth = "752px";
+		
 		this.classList.add("chosen_");
 	};
 
+	document.querySelector("main").style.maxWidth = `calc(${gameColumn}px * 25 + 2px)`;
 	boardHTML.style.gridTemplateColumns = `repeat(${gameColumn}, 1fr)`;
 	boardHTML.style.gridTemplateRows = `repeat(${gameRow}, 1fr)`;
 	resetGame();
