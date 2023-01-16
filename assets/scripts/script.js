@@ -102,11 +102,13 @@ function clickTile() {
 		return;
 	};
 
+	if (this.dataset.flagged == "flagged") return;
+
 	// Check if mines is clicked.
 	minesLocation.forEach(m => {
 		if (this.id === m) {
 			// If there is no flag, then you can click.
-			if (this.dataset.flagged !== "flagged") {
+			if (!this.classList.contains("mine_")) {
 				gameStarted = false;
 
 				revealMines();
@@ -131,7 +133,7 @@ function checkMine(rr, cc) {
 
 	let currentTile = document.getElementById(`${r}-${c}`);
 
-	if (currentTile.classList.contains("clicked") || currentTile.contains(currentTile.querySelector("img"))) {
+	if (currentTile.classList.contains("clicked")) {
 		return;
 	} else {
 		currentTile.classList.add("clicked");
@@ -160,7 +162,6 @@ function checkMine(rr, cc) {
 		if (currentTile.contains(currentTile.querySelector("img"))) {
 			return;
 		} else {
-			// currentTile.innerText = minesFound;
 			currentTile.classList.add(`t${minesFound}_`);
 		};
 	} else { // Recursion.
@@ -197,14 +198,9 @@ function checkSurrounding(r, c) {
 };
 
 function revealMines() {
-	let mineIcon = document.createElement("img");
-	mineIcon.src = "assets/Images/sun.svg";
-
 	minesLocation.forEach(m => {
 		let tileWithMine = document.getElementById(m);
-		tileWithMine.innerHTML = "";
-		tileWithMine.append(mineIcon.cloneNode());
-		tileWithMine.classList.add("clicked");
+		tileWithMine.classList.add("mine_");
 
 		if (tileWithMine.dataset.flagged == "flagged") {
 			// The one that has a flag on it.
@@ -213,9 +209,7 @@ function revealMines() {
 };
 
 function endGame(tile) {
-	tile.classList.remove("clicked");
-	tile.style.background = "rgba(255, 0, 0, 0.4)";
-	flagButton.removeEventListener("click", setFlagMode);
+	tile.classList.add("mine-clicked_");
 	boardHTML.childNodes.forEach(t => t.removeEventListener("click", clickTile));
 	boardHTML.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
 	boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
@@ -324,7 +318,6 @@ function faceWhenReleaseHold() {
 };
 
 smileyFace.addEventListener("click", resetGame);
-// flagButton.addEventListener("click", setFlagMode);
 difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -215,6 +215,8 @@ main {
 .t6_ {background-position: -80px 16px;}
 .t7_ {background-position: -96px 16px;}
 .t8_ {background-position: -112px 16px;}
+.mine_{background-position: 48px 0;}
+.mine-clicked_{background-position: 32px 0};
 
 /* Media Query */
 
