@@ -29,8 +29,9 @@ function loadBoard() {
 			tile.dataset.flagged = false;
 			tile.addEventListener("click", clickTile);
 			tile.addEventListener("contextmenu", placeFlag);
-			tile.addEventListener("mousedown", faceWhenHold);
-			tile.addEventListener("mouseup", faceWhenReleaseHold);
+
+			holdEffect(tile, "hold_");
+
 			boardHTML.append(tile);
 
 			// Fill board array.
@@ -294,10 +295,27 @@ function faceWhenReleaseHold() {
 	smileyFace.classList.remove("face-o_");
 };
 
+function holdEffect(element, className) {
+	element.addEventListener("mousedown", (e) => {
+		if (className == "hold_") faceWhenHold();
+		if (e.buttons == 1 || e.buttons == 3) {
+			element.classList.add(className);
+		};
+	});
+	element.addEventListener("mouseover", (e) => {
+		if (e.buttons == 1 || e.buttons == 3) {
+			element.classList.add(className);
+		};
+	});
+	element.addEventListener("mouseup",() => {
+		if (className == "hold_") faceWhenReleaseHold();
+		element.classList.remove(className)
+	});
+	element.addEventListener("mouseout", () => element.classList.remove(className));
+};
+
+holdEffect(smileyFace, "face-hold_");
 smileyFace.addEventListener("click", resetGame);
-smileyFace.addEventListener("mousedown", () => smileyFace.classList.add("face-hold_"));
-smileyFace.addEventListener("mouseup", () => smileyFace.classList.remove("face-hold_"));
-smileyFace.addEventListener("mouseout", () => smileyFace.classList.remove("face-hold_"));
 difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
 
 document.addEventListener("DOMContentLoaded", () => {

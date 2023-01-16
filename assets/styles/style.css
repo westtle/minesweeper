@@ -96,6 +96,7 @@ main {
 	background-color: #c4c4c4;
 	padding: 5px;
 	width: 100%;
+	user-select: none;
 }
 
 /* Game Difficulty */
@@ -199,6 +200,7 @@ main {
 }
 
 .clicked_ {background-position: -16px 0;}
+.hold_ {background-position: -16px 0;}
 .t1_ {background-position: 0 16px;}
 .t2_ {background-position: -16px 16px;}
 .t3_ {background-position: -32px 16px;}
