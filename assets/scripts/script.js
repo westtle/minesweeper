@@ -24,6 +24,7 @@ const difficultyButtons = {
 	beginnerButton: document.querySelector(".beginner_"),
 	intermediateButton: document.querySelector(".intermediate_"),
 	expertButton: document.querySelector(".expert_"),
+	customButton: document.querySelector(".custom_")
 };
 
 function loadBoard() {
@@ -66,7 +67,7 @@ function loadMines() {
 	};
 };
 
-function difficultySet(button) {
+function difficultySet(button, custom) {
 	difficulty = button.dataset.difficulty;
 	boardHTML.innerHTML = "";
 
@@ -86,6 +87,10 @@ function difficultySet(button) {
 		gameRow = 16;
 		gameColumn = 30;
 		mines = 99;
+	} else if (difficulty == "Custom") {
+		gameRow = custom.width;
+		gameColumn = custom.height;
+		mines = custom.mines;
 	};
 
 	document.querySelector("main").style.maxWidth = `calc(${gameColumn}px * 16 + 2px)`;
@@ -349,6 +354,22 @@ function openTab(tab) {
 	tab.classList.toggle("active-tab_");
 };
 
+function getCustomValue() {
+	do {
+		var width = parseInt(window.prompt("Width (Max: 30 min: 9):", ""), 10);
+	} while (isNaN(width) || width > 30 || width < 9);
+
+	do {
+		var height = parseInt(window.prompt("Height (Max: 24 min: 9):", ""), 10);
+	} while (isNaN(height) || height > 24 || height < 9);
+
+	do {
+		var mines = parseInt(window.prompt("Mines (Max: 667 min: 10):", ""), 10);
+	} while (isNaN(mines) || mines > 667 || mines < 10);
+
+	return {width, height, mines};
+};
+
 smileyFace.addEventListener("click", resetGame);
 
 gameTabButton.addEventListener("click", () => openTab(gameTabButton));
@@ -360,6 +381,11 @@ newGameButton.addEventListener("click", () => {
 });
 Object.keys(difficultyButtons).forEach(button => {
 	difficultyButtons[button].addEventListener("click", () => {
+		if (button == "customButton") {
+			difficultySet(difficultyButtons.customButton, getCustomValue());
+			return;
+		};
+
 		difficultySet(difficultyButtons[button]);
 		openTab(gameTabButton);
 	});
