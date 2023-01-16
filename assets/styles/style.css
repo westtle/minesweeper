@@ -204,8 +204,17 @@ main {
 }
 
 .clicked {
-	background-color: rgb(227, 227, 227);
+	background-position: -16px 0;
 }
+
+.t1_ {background-position: 0 16px;}
+.t2_ {background-position: -16px 16px;}
+.t3_ {background-position: -32px 16px;}
+.t4_ {background-position: -48px 16px;}
+.t5_ {background-position: -64px 16px;}
+.t6_ {background-position: -80px 16px;}
+.t7_ {background-position: -96px 16px;}
+.t8_ {background-position: -112px 16px;}
 
 /* Media Query */
 

@@ -160,7 +160,8 @@ function checkMine(rr, cc) {
 		if (currentTile.contains(currentTile.querySelector("img"))) {
 			return;
 		} else {
-			currentTile.innerText = minesFound;
+			// currentTile.innerText = minesFound;
+			currentTile.classList.add(`t${minesFound}_`);
 		};
 	} else { // Recursion.
 			// Top 3 from current tile.
