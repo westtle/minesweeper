@@ -20,7 +20,7 @@
 }
 
 body { /* Left & right spacing is left & right from default body margin + 12px */
-	background: url("/assets/Images/bliss.jpg");
+	background: url("/assets/Images/bliss.webp");
 	background-size: cover;
 	height: 100vh;
 	margin-top: 0;
