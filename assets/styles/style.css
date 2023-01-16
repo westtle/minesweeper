@@ -146,7 +146,7 @@ main {
 	height: 23px;
 	width: 13px;
 	background: url("/assets/Images/digits.png");
-	background-position: 0 0;
+	background-position: -13px;
 }
 
 ._smiley-face {
