@@ -217,13 +217,12 @@ function endGame(tile) {
 	boardHTML.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
 	boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
 	boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
-	smileyFace.innerText = ":(";
+	smileyFace.classList.add("face-lose_");
 };
 
 function winGame() {
 	if (tilesClicked == gameRow * gameColumn - mines) {
-		smileyFace.innerText = ":D";
-		flagButton.removeEventListener("click", setFlagMode);
+		smileyFace.classList.add("face-win_");
 		boardHTML.childNodes.forEach(t => t.removeEventListener("click", clickTile));
 		boardHTML.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
 		boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
@@ -240,7 +239,7 @@ function resetGame() {
 	minesCounter.innerText = mines;
 	minesLocation = [];
 	boardHTML.innerHTML = "";
-	smileyFace.innerText = ":)";
+	smileyFace.classList.remove("face-win_", "face-lose_");
 	gameStarted = false;
 	setTimeout(() => timerHTML.innerText = "000", 1000);
 	loadBoard();
@@ -308,14 +307,17 @@ function startTimer() {
 };
 
 function faceWhenHold() {
-	smileyFace.innerText = ":o";
+	smileyFace.classList.add("face-o_");
 };
 
 function faceWhenReleaseHold() {
-	smileyFace.innerText = ":)";
+	smileyFace.classList.remove("face-o_");
 };
 
 smileyFace.addEventListener("click", resetGame);
+smileyFace.addEventListener("mousedown", () => smileyFace.classList.add("face-hold_"));
+smileyFace.addEventListener("mouseup", () => smileyFace.classList.remove("face-hold_"));
+smileyFace.addEventListener("mouseout", () => smileyFace.classList.remove("face-hold_"));
 difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
 
 document.addEventListener("DOMContentLoaded", () => {

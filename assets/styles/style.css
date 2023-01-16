@@ -150,13 +150,12 @@ main {
 
 ._smiley-face {
 	background: url("/assets/Images/faces.png");
-	background-position: 0 0;
+	background-position: 0;
 	border: 1px solid #878787;
-	border-right: none;
-	border-bottom: none;
 	border-radius: 2px 2px 0 2px;
-	height: 25px;
-	width: 25px;
+	height: 26px;
+	width: 26px;
+	user-select: none;
 }
 
 /* Game Board */
@@ -213,6 +212,10 @@ main {
 .mine_ {background-position: 48px 0;}
 .mine-flagged_ {background-position: 16px 0;}
 .mine-clicked_ {background-position: 32px 0;}
+.face-o_ {background-position: 72px;}
+.face-win_ {background-position: 48px;}
+.face-lose_ {background-position: 24px;}
+.face-hold_ {background-position: -24px;}
 
 /* Media Query */
 
