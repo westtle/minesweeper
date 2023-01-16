@@ -133,7 +133,7 @@ function checkMine(rr, cc) {
 
 	let currentTile = document.getElementById(`${r}-${c}`);
 
-	if (currentTile.classList.contains("clicked")) {
+	if (currentTile.classList.contains("clicked") || currentTile.classList.contains("mine_")) {
 		return;
 	} else {
 		currentTile.classList.add("clicked");
@@ -180,7 +180,7 @@ function checkMine(rr, cc) {
 		checkMine(r+1, c+1);
 	};
 
-	if (currentTile.innerText == "?") currentTile.innerText = "";
+	if (currentTile.classList.contains("question-mark_")) currentTile.classList.remove("question-mark_");
 
 	winGame();	
 };
@@ -200,10 +200,12 @@ function checkSurrounding(r, c) {
 function revealMines() {
 	minesLocation.forEach(m => {
 		let tileWithMine = document.getElementById(m);
+		tileWithMine.classList.remove("question-mark_");
 		tileWithMine.classList.add("mine_");
 
 		if (tileWithMine.dataset.flagged == "flagged") {
 			// The one that has a flag on it.
+			tileWithMine.classList.remove("flagged_");
 			tileWithMine.classList.add("mine-flagged_");
 		};
 	});
@@ -247,13 +249,11 @@ function resetGame() {
 function setFlagMode() {
 	if (flagMode) {
 		flagMode = false;
-		flagButton.classList.remove("flag-clicked");
 
 		boardHTML.childNodes.forEach(t => t.addEventListener("mousedown", faceWhenHold));
 		boardHTML.childNodes.forEach(t => t.addEventListener("mouseup", faceWhenReleaseHold));
 	} else {
 		flagMode = true;
-		flagButton.classList.add("flag-clicked");
 
 		boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
 		boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
@@ -266,22 +266,19 @@ function placeFlag(e, tile = this) {
 		e.preventDefault();
 	};
 
-	let flagIcon = document.createElement("img");
-	flagIcon.src = "assets/Images/flag.svg";
-
 	if (tile.dataset.flagged == "false" && !tile.classList.contains("clicked")) {
-		tile.innerHTML = "";
-		tile.append(flagIcon);
+		tile.classList.add("flagged_");
 		tile.dataset.flagged = "flagged";
 		
 		minesLeft -= 1;
 	} else if (tile.dataset.flagged == "flagged") {
-		tile.innerText = "?";
+		tile.classList.remove("flagged_");
+		tile.classList.add("question-mark_");
 		tile.dataset.flagged = "question-mark";
 		
 		minesLeft += 1;
 	} else if (tile.dataset.flagged == "question-mark") {
-		tile.innerText = "";
+		tile.classList.remove("question-mark_");
 		tile.dataset.flagged = false;
 	};
 

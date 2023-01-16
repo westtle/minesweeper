@@ -199,14 +199,7 @@ main {
 	border-top-color: #878787;
 }
 
-.flag-clicked {
-	opacity: 0.9 !important;
-}
-
-.clicked {
-	background-position: -16px 0;
-}
-
+.clicked {background-position: -16px 0;}
 .t1_ {background-position: 0 16px;}
 .t2_ {background-position: -16px 16px;}
 .t3_ {background-position: -32px 16px;}
@@ -215,9 +208,11 @@ main {
 .t6_ {background-position: -80px 16px;}
 .t7_ {background-position: -96px 16px;}
 .t8_ {background-position: -112px 16px;}
+.question-mark_ {background-position: 80px 0;}
+.flagged_ {background-position: 96px 0;}
 .mine_ {background-position: 48px 0;}
 .mine-flagged_ {background-position: 16px 0;}
-.mine-clicked_ {background-position: 32px 0};
+.mine-clicked_ {background-position: 32px 0;}
 
 /* Media Query */
 
