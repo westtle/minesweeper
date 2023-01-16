@@ -16,7 +16,6 @@
 }
 
 *, *::before, *::after {
-	color: var(--color-main);
 	box-sizing: border-box;
 }
 
@@ -76,24 +75,71 @@ main {
 #toolbar {
 	display: flex;
 	background-color: #ece9d8;
-	font-family: monospace;
-	font-size: var(--font-size-button);
+	font-family: arial;
+	font-size: var(--font-size-second);
 	cursor: default;
 	user-select: none;
 }
 
 .__game,
 .__help {
+	position: relative;
+}
+
+._game-text,
+._help-text {
 	padding: 3px 6px;
+}
+
+
+._options {
+	display: flex;
+	flex-direction: column;
+	background-color: #fbfbfb;
+	border: 1px solid rgba(0, 0, 0, 0.6);
+	width: 115px;
+	padding: 2px;
+	box-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+	text-align: left;
+
+	position: absolute;
+	left: 0;
+	z-index: 1;
+}
+
+._options > div {
+	display: flex;
+	padding: 3px;
+}
+
+.separator_ {
+	border: none;
+	border-top: 1px solid rgba(0, 0, 0, 0.2);
+	margin: 2.5px 0;
+	width: 100%;
+}
+
+.check__ {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 15px;
+	margin-right: 2px;
+}
+
+.shortcut__ {
+	width: 100%;
+	margin-right: 12px;
+	text-align: right;
 }
 
 /* The Game Itself */
 
 #minesweeper {
+	background-color: #c4c4c4;
 	border: 3px solid white;
 	border-right: 0;
 	border-bottom: 0;
-	background-color: #c4c4c4;
 	padding: 5px;
 	width: 100%;
 	user-select: none;
@@ -127,8 +173,8 @@ main {
 	justify-content: space-between;
 	align-items: center;
 	background-color: #c4c4c4;
-	margin-bottom: 5px;
 	width: 100%;
+	margin-bottom: 5px;
 	padding: 4px 5px;
 	border: 2px solid white;
 
@@ -144,10 +190,10 @@ main {
 .left_,
 .middle_,
 .right_  {
-	height: 23px;
-	width: 13px;
 	background: url("/assets/Images/digits.png");
 	background-position: -13px;
+	height: 23px;
+	width: 13px;
 }
 
 ._smiley-face {
@@ -234,15 +280,14 @@ main {
 /* Media Query */
 
 @media (hover: hover) {
-	.__game:hover,
-	.__help:hover,
-	.__game:hover u,
-	.__help:hover u {
+	._game-text:hover,
+	._game-text:hover u,
+	._options > div:hover {
 		color: white;
 		background-color: #0368ee;
 	}
 
-	._game-difficulty span:hover {
-		opacity: 0.95;
+	._options > div:hover img {
+		filter: invert(1);
 	}
 }
