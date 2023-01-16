@@ -8,7 +8,6 @@ let mines = 10;
 let minesLeft = mines;
 let minesLocation = [];
 
-let flagMode = false;
 let gameStarted = false;
 let difficulty = "Beginner";
 
@@ -95,11 +94,6 @@ function clickTile() {
 	if (!gameStarted) {
 		gameStarted = true;
 		startTimer();
-	};
-	
-	if (flagMode) {
-		placeFlag(null, this);
-		return;
 	};
 
 	if (this.dataset.flagged == "flagged") return;
@@ -243,20 +237,6 @@ function resetGame() {
 	gameStarted = false;
 	setTimeout(() => timerHTML.innerText = "000", 1000);
 	loadBoard();
-};
-
-function setFlagMode() {
-	if (flagMode) {
-		flagMode = false;
-
-		boardHTML.childNodes.forEach(t => t.addEventListener("mousedown", faceWhenHold));
-		boardHTML.childNodes.forEach(t => t.addEventListener("mouseup", faceWhenReleaseHold));
-	} else {
-		flagMode = true;
-
-		boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
-		boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
-	};
 };
 
 function placeFlag(e, tile = this) {
