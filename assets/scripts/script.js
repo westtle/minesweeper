@@ -133,10 +133,10 @@ function checkMine(rr, cc) {
 
 	let currentTile = document.getElementById(`${r}-${c}`);
 
-	if (currentTile.classList.contains("clicked") || currentTile.classList.contains("mine_")) {
+	if (currentTile.classList.contains("clicked_") || currentTile.classList.contains("mine_")) {
 		return;
 	} else {
-		currentTile.classList.add("clicked");
+		currentTile.classList.add("clicked_");
 	};
 
 	let minesFound = 0;
@@ -266,7 +266,7 @@ function placeFlag(e, tile = this) {
 		e.preventDefault();
 	};
 
-	if (tile.dataset.flagged == "false" && !tile.classList.contains("clicked")) {
+	if (tile.dataset.flagged == "false" && !tile.classList.contains("clicked_")) {
 		tile.classList.add("flagged_");
 		tile.dataset.flagged = "flagged";
 		
