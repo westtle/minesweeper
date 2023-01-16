@@ -19,9 +19,6 @@ const smileyFace = document.querySelector("._smiley-face");
 const gameTabButton = document.querySelector(".__game ._game-text");
 const helpTabButton = document.querySelector(".__help ._help-text");
 
-const unusedGameButton = document.querySelectorAll(".unused_");
-const unusedHelpButton = document.querySelectorAll(".unused-help_");
-
 const newGameButton = document.querySelector(".new-game_");
 const difficultyButtons = {
 	beginnerButton: document.querySelector(".beginner_"),
@@ -357,12 +354,6 @@ smileyFace.addEventListener("click", resetGame);
 gameTabButton.addEventListener("click", () => openTab(gameTabButton));
 helpTabButton.addEventListener("click", () => openTab(helpTabButton));
 
-unusedGameButton.forEach(button => {
-	button.addEventListener("click", () => openTab(gameTabButton))
-});
-unusedHelpButton.forEach(button => {
-	button.addEventListener("click", () => openTab(helpTabButton))
-});
 newGameButton.addEventListener("click", () => {
 	resetGame();
 	openTab(gameTabButton);
@@ -375,11 +366,11 @@ Object.keys(difficultyButtons).forEach(button => {
 });
 
 document.addEventListener("click", (e) => {
-	if (e.target != gameTabButton && e.target != gameTabButton.querySelector("u") && gameTabButton.classList.contains("active-tab_")) {
+	if (e.target != gameTabButton && e.target != document.querySelector("._options") && e.target != document.querySelector(".separator_") && e.target != gameTabButton.querySelector("u") && gameTabButton.classList.contains("active-tab_")) {
 		openTab(gameTabButton);
 	};
 
-	if (e.target != helpTabButton && e.target != helpTabButton.querySelector("u") && helpTabButton.classList.contains("active-tab_")) {
+	if (e.target != helpTabButton && e.target != document.querySelector("._options") && e.target != document.querySelector(".separator_") && e.target != helpTabButton.querySelector("u") && helpTabButton.classList.contains("active-tab_")) {
 		openTab(helpTabButton);
 	};
 });
