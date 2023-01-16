@@ -18,6 +18,7 @@ const smileyFace = document.querySelector("._smiley-face");
 
 const gameTabButton = document.querySelector(".__game ._game-text");
 const newGameButton = document.querySelector(".new-game_");
+const unusedButton = document.querySelectorAll(".unused_");
 const difficultyButtons = {
 	beginnerButton: document.querySelector(".beginner_"),
 	intermediateButton: document.querySelector(".intermediate_"),
@@ -353,6 +354,9 @@ gameTabButton.addEventListener("click", () => openTab(gameTabButton));
 newGameButton.addEventListener("click", () => {
 	resetGame();
 	openTab(gameTabButton);
+});
+unusedButton.forEach(button => {
+	button.addEventListener("click", () => openTab(gameTabButton))
 });
 Object.keys(difficultyButtons).forEach(button => {
 	difficultyButtons[button].addEventListener("click", () => {
