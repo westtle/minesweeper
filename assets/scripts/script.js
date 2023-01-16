@@ -374,6 +374,16 @@ Object.keys(difficultyButtons).forEach(button => {
 	});
 });
 
+document.addEventListener("click", (e) => {
+	if (e.target != gameTabButton && e.target != gameTabButton.querySelector("u") && gameTabButton.classList.contains("active-tab_")) {
+		openTab(gameTabButton);
+	};
+
+	if (e.target != helpTabButton && e.target != helpTabButton.querySelector("u") && helpTabButton.classList.contains("active-tab_")) {
+		openTab(helpTabButton);
+	};
+});
+
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();
 	holdEffect(smileyFace, "face-hold_");
