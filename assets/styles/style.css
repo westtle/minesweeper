@@ -93,7 +93,7 @@ main {
 
 
 ._options {
-	display: flex;
+	display: none;
 	flex-direction: column;
 	background-color: #fbfbfb;
 	border: 1px solid rgba(0, 0, 0, 0.6);
@@ -237,6 +237,15 @@ main {
 }
 
 /* Extra */
+
+.active_ {
+	display: flex;
+}
+
+.active-tab_ {
+	color: white;
+	background-color: #0368ee;
+}
 
 .__game-info,
 .__board,

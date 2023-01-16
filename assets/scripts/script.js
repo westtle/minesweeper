@@ -15,10 +15,10 @@ let difficulty = "Beginner";
 const boardHTML = document.querySelector(".__board");
 const timerHTML = document.querySelector("._timer");
 const smileyFace = document.querySelector("._smiley-face");
-const minesCounter = document.querySelector("._mines-count");
 
-const flagButton = document.querySelector("._flag");
 const difficultyButtons = document.querySelectorAll("._game-difficulty span");
+
+const gameTabButton = document.querySelector(".__game ._game-text");
 
 function loadBoard() {
 	for (let r = 0; r < gameRow; r++) {
@@ -341,8 +341,14 @@ function holdEffect(element, className) {
 	element.addEventListener("mouseout", () => element.classList.remove(className));
 };
 
+function openTab(tab) {
+	tab.parentElement.querySelector("._options").classList.toggle("active_");
+	tab.classList.toggle("active-tab_");
+};
+
 holdEffect(smileyFace, "face-hold_");
 smileyFace.addEventListener("click", resetGame);
+gameTabButton.addEventListener("click", () => openTab(gameTabButton));
 difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
 
 document.addEventListener("DOMContentLoaded", () => {
