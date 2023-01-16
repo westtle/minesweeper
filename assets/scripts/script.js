@@ -46,6 +46,8 @@ function loadBoard() {
 		};
 	};
 
+	boardHTML.style.pointerEvents = "auto";
+
 	updateDigit("._mines-count", minesLeft);
 	loadMines();
 };
@@ -62,14 +64,12 @@ function loadMines() {
 			if (minesLocation.length < mines) {
 				loadMines();
 			};
-
 		};
 	};
 };
 
 function difficultySet(button, custom) {
 	difficulty = button.dataset.difficulty;
-	boardHTML.innerHTML = "";
 
 	// Update checkmark.
 	Object.keys(difficultyButtons).forEach(button => difficultyButtons[button].querySelector("img").dataset.checked = "false");
@@ -126,6 +126,7 @@ function clickTile() {
 };
 
 function checkMine(rr, cc) {
+
 	// Change to number (idk why it doesn't work if i don't do this.).
     let r = Number(rr);
     let c = Number(cc);
@@ -216,7 +217,7 @@ function revealMines() {
 
 function endGame(tile) {
 	tile.classList.add("mine-clicked_");
-	boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
+	boardHTML.style.pointerEvents = "none";
 	smileyFace.classList.add("face-lose_");
 };
 
@@ -224,7 +225,7 @@ function winGame() {
 	if (tilesClicked == gameRow * gameColumn - mines) {
 		gameStarted = false;
 
-		boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
+		boardHTML.style.pointerEvents = "none";
 		smileyFace.classList.add("face-win_");
 		revealMines();
 	};
@@ -232,8 +233,7 @@ function winGame() {
 
 function resetGame() {
 	tilesClicked = 0;
-	// mines = difficulty == "Beginner" ? 10 : difficulty == "Intermediate" ? 40 : 99;
-	minesLeft = mines
+	minesLeft = mines;
 	minesLocation = [];
 	boardHTML.innerHTML = "";
 	smileyFace.classList.remove("face-win_", "face-lose_");
