@@ -204,6 +204,7 @@ function revealMines() {
 
 		if (tileWithMine.dataset.flagged == "flagged") {
 			// The one that has a flag on it.
+			tileWithMine.classList.add("mine-flagged_");
 		};
 	});
 };
