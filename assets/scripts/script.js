@@ -19,6 +19,7 @@ const smileyFace = document.querySelector("._smiley-face");
 const difficultyButtons = document.querySelectorAll("._game-difficulty span");
 
 const gameTabButton = document.querySelector(".__game ._game-text");
+const newGameButton = document.querySelector(".new-game_");
 
 function loadBoard() {
 	for (let r = 0; r < gameRow; r++) {
@@ -346,11 +347,17 @@ function openTab(tab) {
 	tab.classList.toggle("active-tab_");
 };
 
-holdEffect(smileyFace, "face-hold_");
 smileyFace.addEventListener("click", resetGame);
+
 gameTabButton.addEventListener("click", () => openTab(gameTabButton));
+newGameButton.addEventListener("click", () => {
+	resetGame();
+	openTab(gameTabButton);
+});
+
 difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
 
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();
+	holdEffect(smileyFace, "face-hold_");
 });
