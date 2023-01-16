@@ -91,7 +91,6 @@ main {
 	padding: 3px 6px;
 }
 
-
 ._options {
 	display: none;
 	flex-direction: column;
@@ -103,14 +102,18 @@ main {
 	text-align: left;
 
 	position: absolute;
-	left: 0;
 	z-index: 1;
+}
+
+.__help ._options {
+	width: 160px;
 }
 
 ._options > div {
 	display: flex;
 	padding: 3px;
 }
+
 
 .separator_ {
 	border: none;
@@ -123,7 +126,8 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 15px;
+	width: 100%;
+	max-width: 15px;
 	margin-right: 2px;
 }
 
@@ -299,6 +303,8 @@ main {
 @media (hover: hover) {
 	._game-text:hover,
 	._game-text:hover u,
+	._help-text:hover,
+	._help-text:hover u,
 	._options > div:hover {
 		color: white;
 		background-color: #0368ee;

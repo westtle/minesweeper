@@ -17,8 +17,12 @@ const timerHTML = document.querySelector("._timer");
 const smileyFace = document.querySelector("._smiley-face");
 
 const gameTabButton = document.querySelector(".__game ._game-text");
+const helpTabButton = document.querySelector(".__help ._help-text");
+
+const unusedGameButton = document.querySelectorAll(".unused_");
+const unusedHelpButton = document.querySelectorAll(".unused-help_");
+
 const newGameButton = document.querySelector(".new-game_");
-const unusedButton = document.querySelectorAll(".unused_");
 const difficultyButtons = {
 	beginnerButton: document.querySelector(".beginner_"),
 	intermediateButton: document.querySelector(".intermediate_"),
@@ -351,12 +355,17 @@ function openTab(tab) {
 smileyFace.addEventListener("click", resetGame);
 
 gameTabButton.addEventListener("click", () => openTab(gameTabButton));
+helpTabButton.addEventListener("click", () => openTab(helpTabButton));
+
+unusedGameButton.forEach(button => {
+	button.addEventListener("click", () => openTab(gameTabButton))
+});
+unusedHelpButton.forEach(button => {
+	button.addEventListener("click", () => openTab(helpTabButton))
+});
 newGameButton.addEventListener("click", () => {
 	resetGame();
 	openTab(gameTabButton);
-});
-unusedButton.forEach(button => {
-	button.addEventListener("click", () => openTab(gameTabButton))
 });
 Object.keys(difficultyButtons).forEach(button => {
 	difficultyButtons[button].addEventListener("click", () => {
@@ -364,6 +373,7 @@ Object.keys(difficultyButtons).forEach(button => {
 		openTab(gameTabButton);
 	});
 });
+
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();
 	holdEffect(smileyFace, "face-hold_");
