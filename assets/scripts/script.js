@@ -208,21 +208,16 @@ function revealMines() {
 
 function endGame(tile) {
 	tile.classList.add("mine-clicked_");
-	boardHTML.childNodes.forEach(t => t.removeEventListener("click", clickTile));
-	boardHTML.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
-	boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
-	boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
+	boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
 	smileyFace.classList.add("face-lose_");
 };
 
 function winGame() {
 	if (tilesClicked == gameRow * gameColumn - mines) {
-		smileyFace.classList.add("face-win_");
-		boardHTML.childNodes.forEach(t => t.removeEventListener("click", clickTile));
-		boardHTML.childNodes.forEach(t => t.removeEventListener("contextmenu", placeFlag));
-		boardHTML.childNodes.forEach(t => t.removeEventListener("mousedown", faceWhenHold));
-		boardHTML.childNodes.forEach(t => t.removeEventListener("mouseup", faceWhenReleaseHold));
 		gameStarted = false;
+		
+		boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
+		smileyFace.classList.add("face-win_");
 		revealMines();
 	};
 };
