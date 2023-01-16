@@ -39,7 +39,7 @@ function loadBoard() {
 		};
 	};
 
-	// minesCounter.innerText = minesLeft;
+	updateDigit("._mines-count", minesLeft);
 	loadMines();
 };
 
@@ -243,7 +243,7 @@ function placeFlag(e, tile = this) {
 	if (tile.dataset.flagged == "false" && !tile.classList.contains("clicked_")) {
 		tile.classList.add("flagged_");
 		tile.dataset.flagged = "flagged";
-		
+
 		minesLeft -= 1;
 	} else if (tile.dataset.flagged == "flagged") {
 		tile.classList.remove("flagged_");
@@ -256,7 +256,8 @@ function placeFlag(e, tile = this) {
 		tile.dataset.flagged = false;
 	};
 
-	minesCounter.innerText = minesLeft;
+	updateDigit("._mines-count", minesLeft);
+
 	return;
 };
 
@@ -275,24 +276,37 @@ function startTimer() {
 			time = increment;
 		};
 		
-		// Add dataset to element & update HTML.
-		const leftDigit = toWord(time.split("")[0]);
-		const leftDigitHTML = document.querySelector("._timer .left_");
-		leftDigitHTML.dataset.number = `${leftDigit}_`;
-
-		const middleDigit = toWord(time.split("")[1]);
-		const middleDigitHTML = document.querySelector("._timer .middle_");
-		middleDigitHTML.dataset.number = `${middleDigit}_`;
-
-		const rightDigit = toWord(time.split("")[2]);
-		const rightDigitHTML = document.querySelector("._timer .right_");
-		rightDigitHTML.dataset.number = `${rightDigit}_`;
+		updateDigit("._timer", increment);
 
 		if (!gameStarted || increment == 999) {
 			clearInterval(timer);
 		};
 
 	}, 1000);
+};
+
+function updateDigit(element, someVariable) {
+	let digit;
+
+	if (someVariable < 10) {
+		digit = `00${someVariable}`;
+	} else if (someVariable < 100) {
+		digit = `0${someVariable}`;
+	} else if (someVariable < 1000) {
+		digit = someVariable.toString();
+	};
+
+	const leftDigit = toWord(digit.split("")[0]);
+	const leftDigitHTML = document.querySelector(`${element} .left_`);
+	leftDigitHTML.dataset.number = `${leftDigit}_`;
+
+	const middleDigit = toWord(digit.split("")[1]);
+	const middleDigitHTML = document.querySelector(`${element} .middle_`);
+	middleDigitHTML.dataset.number = `${middleDigit}_`;
+
+	const rightDigit = toWord(digit.split("")[2]);
+	const rightDigitHTML = document.querySelector(`${element} .right_`);
+	rightDigitHTML.dataset.number = `${rightDigit}_`;
 };
 
 function toWord(number) {
