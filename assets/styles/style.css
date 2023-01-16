@@ -141,8 +141,9 @@ main {
 	border: 1px solid white;
 }
 
-._mines-count div,
-._timer div {
+.left_,
+.middle_,
+.right_  {
 	height: 23px;
 	width: 13px;
 	background: url("/assets/Images/digits.png");
@@ -218,6 +219,17 @@ main {
 .face-win_ {background-position: 48px;}
 .face-lose_ {background-position: 24px;}
 .face-hold_ {background-position: -24px;}
+
+[data-number="minus_"] {background-position: 0;}
+[data-number="one_"] {background-position: -26px;}
+[data-number="two_"] {background-position: -39px;}
+[data-number="three_"] {background-position: -52px;}
+[data-number="four_"] {background-position: -65px;}
+[data-number="five_"] {background-position: -78px;}
+[data-number="six_"] {background-position: -91px;}
+[data-number="seven_"] {background-position: -104px;}
+[data-number="eight_"] {background-position: -117px;}
+[data-number="nine_"] {background-position: -130px;}
 
 /* Media Query */
 

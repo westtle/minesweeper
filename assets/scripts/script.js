@@ -13,7 +13,7 @@ let difficulty = "Beginner";
 
 // HTML.
 const boardHTML = document.querySelector(".__board");
-const timerHTML = document.querySelector(".__timer");
+const timerHTML = document.querySelector("._timer");
 const smileyFace = document.querySelector("._smiley-face");
 const minesCounter = document.querySelector("._mines-count");
 
@@ -215,7 +215,7 @@ function endGame(tile) {
 function winGame() {
 	if (tilesClicked == gameRow * gameColumn - mines) {
 		gameStarted = false;
-		
+
 		boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
 		smileyFace.classList.add("face-win_");
 		revealMines();
@@ -226,12 +226,11 @@ function resetGame() {
 	tilesClicked = 0;
 	// mines = difficulty == "Beginner" ? 10 : difficulty == "Intermediate" ? 40 : 99;
 	minesLeft = mines
-	minesCounter.innerText = mines;
 	minesLocation = [];
 	boardHTML.innerHTML = "";
 	smileyFace.classList.remove("face-win_", "face-lose_");
 	gameStarted = false;
-	setTimeout(() => timerHTML.innerText = "000", 1000);
+	setTimeout(() => Array.from(timerHTML.children).forEach(e => e.dataset.number = "zero_"), 1000);
 	loadBoard();
 };
 
@@ -262,24 +261,43 @@ function placeFlag(e, tile = this) {
 };
 
 function startTimer() {
-	let currentTimer = 0;
+	let time = "000";
+	let increment = 0;
 
 	let timer = setInterval(() => {
-		currentTimer += 1;
+		increment++;
 
-		if (currentTimer < 10) {
-			timerHTML.innerText = `00${currentTimer}`;
-		} else if (currentTimer < 100) {
-			timerHTML.innerText = `0${currentTimer}`;
-		} else if (currentTimer < 1000) {
-			timerHTML.innerText = currentTimer;
+		if (increment < 10) {
+			time = `00${increment}`;
+		} else if (increment < 100) {
+			time = `0${increment}`;
+		} else if (increment < 1000) {
+			time = increment;
 		};
+		
+		// Add dataset to element & update HTML.
+		const leftDigit = toWord(time.split("")[0]);
+		const leftDigitHTML = document.querySelector("._timer .left_");
+		leftDigitHTML.dataset.number = `${leftDigit}_`;
 
-		if (!gameStarted || currentTimer ==- 999) {
+		const middleDigit = toWord(time.split("")[1]);
+		const middleDigitHTML = document.querySelector("._timer .middle_");
+		middleDigitHTML.dataset.number = `${middleDigit}_`;
+
+		const rightDigit = toWord(time.split("")[2]);
+		const rightDigitHTML = document.querySelector("._timer .right_");
+		rightDigitHTML.dataset.number = `${rightDigit}_`;
+
+		if (!gameStarted || increment == 999) {
 			clearInterval(timer);
 		};
-	}, 1000);
 
+	}, 1000);
+};
+
+function toWord(number) {
+	const numberAsWord = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+	return numberAsWord[number];
 };
 
 function faceWhenHold() {
