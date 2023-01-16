@@ -127,6 +127,10 @@ main {
 	margin-right: 2px;
 }
 
+.check__ img {
+	display: none;
+}
+
 .shortcut__ {
 	width: 100%;
 	margin-right: 12px;
@@ -245,6 +249,10 @@ main {
 .active-tab_ {
 	color: white;
 	background-color: #0368ee;
+}
+
+[data-checked="true"] {
+	display: block !important;
 }
 
 .__game-info,

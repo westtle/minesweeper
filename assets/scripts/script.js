@@ -16,10 +16,13 @@ const boardHTML = document.querySelector(".__board");
 const timerHTML = document.querySelector("._timer");
 const smileyFace = document.querySelector("._smiley-face");
 
-const difficultyButtons = document.querySelectorAll("._game-difficulty span");
-
 const gameTabButton = document.querySelector(".__game ._game-text");
 const newGameButton = document.querySelector(".new-game_");
+const difficultyButtons = {
+	beginnerButton: document.querySelector(".beginner_"),
+	intermediateButton: document.querySelector(".intermediate_"),
+	expertButton: document.querySelector(".expert_"),
+};
 
 function loadBoard() {
 	for (let r = 0; r < gameRow; r++) {
@@ -61,29 +64,26 @@ function loadMines() {
 	};
 };
 
-function difficultySet() {
-	difficulty = this.innerText;
-	difficultyButtons.forEach(button => button.classList.remove("chosen_"));
+function difficultySet(button) {
+	difficulty = button.dataset.difficulty;
 	boardHTML.innerHTML = "";
+
+	// Update checkmark.
+	Object.keys(difficultyButtons).forEach(button => difficultyButtons[button].querySelector("img").dataset.checked = "false");
+	button.querySelector("img").dataset.checked = "true";
 
 	if (difficulty == "Beginner") {
 		gameRow = 9;
 		gameColumn = 9;
 		mines = 10;
-		
-		this.classList.add("chosen_");
 	} else if (difficulty == "Intermediate") {
 		gameRow = 16;
 		gameColumn = 16;
 		mines = 40;
-
-		this.classList.add("chosen_");
 	} else if (difficulty == "Expert") {
 		gameRow = 16;
 		gameColumn = 30;
 		mines = 99;
-
-		this.classList.add("chosen_");
 	};
 
 	document.querySelector("main").style.maxWidth = `calc(${gameColumn}px * 16 + 2px)`;
@@ -354,9 +354,12 @@ newGameButton.addEventListener("click", () => {
 	resetGame();
 	openTab(gameTabButton);
 });
-
-difficultyButtons.forEach(button => button.addEventListener("click", difficultySet));
-
+Object.keys(difficultyButtons).forEach(button => {
+	difficultyButtons[button].addEventListener("click", () => {
+		difficultySet(difficultyButtons[button]);
+		openTab(gameTabButton);
+	});
+});
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();
 	holdEffect(smileyFace, "face-hold_");
