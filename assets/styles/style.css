@@ -63,7 +63,8 @@ main {
 
 .__icon img {
 	display: block;
-	width: 1.063rem;
+	height: auto;
+	width: 1rem;
 }
 
 .__title {
