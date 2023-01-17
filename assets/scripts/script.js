@@ -397,6 +397,7 @@ Object.keys(difficultyButtons).forEach(button => {
 	});
 });
 
+// Close tab if clicked outside.
 document.addEventListener("click", (e) => {
 	if (e.target != gameTabButton && e.target != document.querySelector("._options") && e.target != document.querySelector(".separator_") && e.target != gameTabButton.querySelector("u") && gameTabButton.classList.contains("active-tab_")) {
 		openTab(gameTabButton);
@@ -406,6 +407,9 @@ document.addEventListener("click", (e) => {
 		openTab(helpTabButton);
 	};
 });
+
+// F2 to restart.
+document.addEventListener('keyup', (e) => if (e.code == "F2") resetGame());
 
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();
