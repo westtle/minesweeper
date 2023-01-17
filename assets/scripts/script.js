@@ -409,7 +409,7 @@ document.addEventListener("click", (e) => {
 });
 
 // F2 to restart.
-document.addEventListener('keyup', (e) => if (e.code == "F2") resetGame());
+document.addEventListener('keyup', (e) => {if (e.code == "F2") resetGame()});
 
 document.addEventListener("DOMContentLoaded", () => {
 	loadBoard();
