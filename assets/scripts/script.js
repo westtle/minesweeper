@@ -11,6 +11,8 @@ let minesLocation = [];
 let gameStarted = false;
 let difficulty = "Beginner";
 
+let timerId;
+
 // HTML.
 const boardHTML = document.querySelector(".__board");
 const timerHTML = document.querySelector("._timer");
@@ -217,6 +219,8 @@ function endGame(tile) {
 	tile.classList.add("mine-clicked_");
 	boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
 	smileyFace.classList.add("face-lose_");
+
+	clearInterval(timerId);
 };
 
 function winGame() {
@@ -225,6 +229,8 @@ function winGame() {
 
 		boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
 		smileyFace.classList.add("face-win_");
+
+		clearInterval(timerId);
 		revealMines();
 	};
 };
@@ -236,7 +242,9 @@ function resetGame() {
 	boardHTML.innerHTML = "";
 	smileyFace.classList.remove("face-win_", "face-lose_");
 	gameStarted = false;
-	setTimeout(() => Array.from(timerHTML.children).forEach(e => e.dataset.number = "zero_"), 1000);
+	Array.from(timerHTML.children).forEach(e => e.dataset.number = "zero_");
+
+	clearInterval(timerId);
 	loadBoard();
 };
 
@@ -271,7 +279,7 @@ function startTimer() {
 	let time = "000";
 	let increment = 0;
 
-	let timer = setInterval(() => {
+	timerId = setInterval(() => {
 		increment++;
 
 		if (increment < 10) {
@@ -285,7 +293,7 @@ function startTimer() {
 		updateDigit("._timer", increment);
 
 		if (!gameStarted || increment == 999) {
-			clearInterval(timer);
+			clearInterval(timerId);
 		};
 
 	}, 1000);
