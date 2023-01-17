@@ -91,7 +91,7 @@ function difficultySet(button, custom) {
 		mines = custom.mines;
 	};
 
-	document.querySelector("#window").style.width = `calc((1rem * ${gameColumn}) + (0.188rem * 3) + (0.313rem * 4)`;
+	document.querySelector("#window").style.width = `calc((1rem * ${gameColumn}) + (0.188rem * 2.99) + (0.313rem * 4)`;
 	boardHTML.style.gridTemplateColumns = `repeat(${gameColumn}, 1fr)`;
 	boardHTML.style.gridTemplateRows = `repeat(${gameRow}, 1fr)`;
 	resetGame();

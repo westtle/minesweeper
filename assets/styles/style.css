@@ -41,7 +41,7 @@ main {
 #window {
 	background: linear-gradient(0deg, rgba(49,100,218,1) 0%, rgba(14,69,171,1) 0%, rgba(36,113,244,1) 96%, rgba(58,138,255,1) 100%);
 	border-radius: 0.5rem 0.5rem 0 0;
-	width: calc((1rem * 9) + (0.188rem * 3) + (0.313rem * 4));
+	width: calc((1rem * 9) + (0.188rem * 2.99) + (0.313rem * 4));
 	max-width: 100%;
 	padding: 0.313rem;
 }
