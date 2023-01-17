@@ -46,8 +46,6 @@ function loadBoard() {
 		};
 	};
 
-	boardHTML.style.pointerEvents = "auto";
-
 	updateDigit("._mines-count", minesLeft);
 	loadMines();
 };
@@ -93,7 +91,7 @@ function difficultySet(button, custom) {
 		mines = custom.mines;
 	};
 
-	document.querySelector("main").style.maxWidth = `calc(${gameColumn} * 1rem + 0.125rem)`;
+	document.querySelector("#window").style.width = `calc((1rem * ${gameColumn}) + (0.188rem * 3) + (0.313rem * 4)`;
 	boardHTML.style.gridTemplateColumns = `repeat(${gameColumn}, 1fr)`;
 	boardHTML.style.gridTemplateRows = `repeat(${gameRow}, 1fr)`;
 	resetGame();
@@ -217,7 +215,7 @@ function revealMines() {
 
 function endGame(tile) {
 	tile.classList.add("mine-clicked_");
-	boardHTML.style.pointerEvents = "none";
+	boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
 	smileyFace.classList.add("face-lose_");
 };
 
@@ -225,7 +223,7 @@ function winGame() {
 	if (tilesClicked == gameRow * gameColumn - mines) {
 		gameStarted = false;
 
-		boardHTML.style.pointerEvents = "none";
+		boardHTML.childNodes.forEach(t => t.style.pointerEvents = "none");
 		smileyFace.classList.add("face-win_");
 		revealMines();
 	};
