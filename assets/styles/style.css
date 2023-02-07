@@ -113,11 +113,17 @@ main {
 	width: 10rem;
 }
 
-._options > div {
+._options > div,
+.repository_ {
 	display: flex;
 	padding: 0.188rem;
 }
 
+._options > a {
+	color: inherit;
+	text-decoration: none;
+	cursor: default;
+}
 
 .separator_ {
 	border: none;
@@ -315,7 +321,8 @@ main {
 	._game-text:hover u,
 	._help-text:hover,
 	._help-text:hover u,
-	._options > div:hover {
+	._options > div:hover,
+	._options > a:hover {
 		color: white;
 		background-color: #0368ee;
 	}
