@@ -1,18 +1,19 @@
 :root {
-	--font-size-main: 0.906rem; /* 14.5px */
-	--font-size-second: 0.688rem; /* 11px */
+	--font-size-primary: 0.906rem; /* 14.5px */
+	--font-size-secondary: 0.688rem; /* 11px */
 
-	--color-main: rgba(0, 0, 0, 0.8);
-	--border-main: rgba(0, 0, 0, 0.6);
-	--border-shorthand: 0.063rem solid rgba(0, 0, 0, 0.6);
+	--foreground: rgba(0, 0, 0, 0.75);
+
+	--border-color: rgba(0, 0, 0, 0.55);
+	--border-shorthand: 0.063rem solid var(--border-color);
 
 	/* Button */
-	--button-hover-backround: rgba(0, 0, 0, 0.8);
-	--button-hover-color: rgba(255, 255, 255, 0.9);
+	--button-hover-foreground: rgba(255, 255, 255, 0.9);
+	--button-hover-backround: rgba(0, 0, 0, 0.78);
 	--font-size-button: 0.769rem; /* 12.3px */
 
-	--unit-one: 0.438rem; /* 7px */
-	--unit-two: 0.75rem; /* 12px */
+	--seven: 0.438rem; /* 7px */
+	--twelve: 0.75rem; /* 12px */
 }
 
 *, *::before, *::after {
@@ -27,8 +28,8 @@ body { /* Left & right spacing is left & right from default body margin + 12px *
 	min-height: 91vh;
 	margin-top: 4.5vh;
 	margin-bottom: 4.5vh;
-	padding: var(--unit-one);
-	font-size: var(--font-size-main);
+	padding: var(--seven);
+	font-size: var(--font-size-primary);
 	text-align: center;
 }
 
@@ -80,7 +81,7 @@ main {
 	display: flex;
 	background-color: #ece9d8;
 	font-family: arial;
-	font-size: var(--font-size-second);
+	font-size: var(--font-size-secondary);
 	cursor: default;
 	user-select: none;
 }
@@ -168,7 +169,7 @@ main {
 /* Game Difficulty */
 
 ._game-difficulty {
-	font-size: var(--font-size-second);
+	font-size: var(--font-size-secondary);
 	text-decoration: underline;
 	cursor: pointer;
 
@@ -256,7 +257,7 @@ main {
 }
 
 ._tile img {
-	width: var(--font-size-main);
+	width: var(--font-size-primary);
 	opacity: 0.8;
 }
 
