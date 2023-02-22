@@ -20,22 +20,22 @@
 }
 
 body { /* Left & right spacing is left & right from default body margin + 12px */
+	display: flex;
+	align-items: center;
 	background: url("../Images/bliss.webp");
 	background-size: cover;
-	height: 100vh;
-	margin-top: 0;
-	margin-bottom: 0;
-	padding: var(--unit-two);
+	min-height: 91vh;
+	margin-top: 4.5vh;
+	margin-bottom: 4.5vh;
+	padding: var(--unit-one);
 	font-size: var(--font-size-main);
+	text-align: center;
 }
 
 main {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: calc(100% - 9vh);
-	margin: 4.5vh auto;
-	text-align: center;
+	width: 100%;
 }
 
 #window {
